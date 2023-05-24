@@ -38,7 +38,7 @@ productRouter.put("/:pid", async (req, res) => {
     let fields = req.body;
     let updatedProd = await manager.updateProduct(pid, fields);
     if(!updatedProd){
-        res.status(404).send({ status: "error", message: "producto no encontrado" })
+        res.status(404).send({ status: "error", message: "no se pudo actualizar el producto" })
     }
     res.send({ status: "success", message: `Producto ${updatedProd.id} actualizado` }) 
 })
@@ -47,7 +47,7 @@ productRouter.delete("/:pid", async (req, res) => {
     let pid = req.params.pid;
     let deletedProd = await manager.deleteProduct(pid);
     if(!deletedProd){
-        res.status(404).send({ status: "error", message: "producto no encontrado" })
+        res.status(404).send({ status: "error", message: "producto no encontrado, no se pudo eliminar" })
     }
     res.send({ status: "success", message: `Producto ${deletedProd.id} eliminado` })
 })
